@@ -1,0 +1,13 @@
+//
+//  Constants.swift
+//  iTunesRSSFeedList
+//
+//  Created by MacBook Pro 13 on 10/2/19.
+//  Copyright © 2019 Adolfo. All rights reserved.
+//
+
+import Foundation
+
+struct Constants {
+    static let albumListTitle = "iTunes Top Albums"
+}

@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		B0553B0A234406620006EACF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0553B09234406620006EACF /* AppDelegate.swift */; };
 		B0553B0C234406620006EACF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0553B0B234406620006EACF /* SceneDelegate.swift */; };
-		B0553B0E234406620006EACF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0553B0D234406620006EACF /* ViewController.swift */; };
-		B0553B11234406620006EACF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0553B0F234406620006EACF /* Main.storyboard */; };
+		B0553B0E234406620006EACF /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0553B0D234406620006EACF /* AlbumListViewController.swift */; };
 		B0553B13234406640006EACF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0553B12234406640006EACF /* Assets.xcassets */; };
 		B0553B16234406640006EACF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0553B14234406640006EACF /* LaunchScreen.storyboard */; };
 		B0553B21234406640006EACF /* iTunesRSSFeedListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0553B20234406640006EACF /* iTunesRSSFeedListTests.swift */; };
+		B0A77B722344F6D100DB9DDE /* UIViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A77B712344F6D100DB9DDE /* UIViewHelpers.swift */; };
+		B0CB397E23450CDB006881B3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB397D23450CDB006881B3 /* Constants.swift */; };
+		B0EE292923450652006D38BB /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EE292823450652006D38BB /* ApplicationCoordinator.swift */; };
+		B0EE292B234508D4006D38BB /* AlbumListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EE292A234508D4006D38BB /* AlbumListCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,14 +33,17 @@
 		B0553B06234406620006EACF /* iTunesRSSFeedList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesRSSFeedList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0553B09234406620006EACF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0553B0B234406620006EACF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B0553B0D234406620006EACF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B0553B10234406620006EACF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B0553B0D234406620006EACF /* AlbumListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewController.swift; sourceTree = "<group>"; };
 		B0553B12234406640006EACF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0553B15234406640006EACF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0553B17234406640006EACF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0553B1C234406640006EACF /* iTunesRSSFeedListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTunesRSSFeedListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0553B20234406640006EACF /* iTunesRSSFeedListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesRSSFeedListTests.swift; sourceTree = "<group>"; };
 		B0553B22234406640006EACF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0A77B712344F6D100DB9DDE /* UIViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewHelpers.swift; sourceTree = "<group>"; };
+		B0CB397D23450CDB006881B3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B0EE292823450652006D38BB /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		B0EE292A234508D4006D38BB /* AlbumListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +85,14 @@
 		B0553B08234406620006EACF /* iTunesRSSFeedList */ = {
 			isa = PBXGroup;
 			children = (
+				B0A77B702344F69300DB9DDE /* Helpers */,
+				B0EE292523450106006D38BB /* Coordinators */,
+				B0EE292423450101006D38BB /* Models */,
+				B0A77B6F2344F4E500DB9DDE /* ViewControllers */,
+				B0EE29262345010E006D38BB /* ViewModels */,
+				B0EE2927234503DE006D38BB /* Views */,
 				B0553B09234406620006EACF /* AppDelegate.swift */,
 				B0553B0B234406620006EACF /* SceneDelegate.swift */,
-				B0553B0D234406620006EACF /* ViewController.swift */,
-				B0553B0F234406620006EACF /* Main.storyboard */,
 				B0553B12234406640006EACF /* Assets.xcassets */,
 				B0553B14234406640006EACF /* LaunchScreen.storyboard */,
 				B0553B17234406640006EACF /* Info.plist */,
@@ -97,6 +107,53 @@
 				B0553B22234406640006EACF /* Info.plist */,
 			);
 			path = iTunesRSSFeedListTests;
+			sourceTree = "<group>";
+		};
+		B0A77B6F2344F4E500DB9DDE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B0553B0D234406620006EACF /* AlbumListViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B0A77B702344F69300DB9DDE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B0A77B712344F6D100DB9DDE /* UIViewHelpers.swift */,
+				B0CB397D23450CDB006881B3 /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		B0EE292423450101006D38BB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B0EE292523450106006D38BB /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				B0EE292823450652006D38BB /* ApplicationCoordinator.swift */,
+				B0EE292A234508D4006D38BB /* AlbumListCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		B0EE29262345010E006D38BB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B0EE2927234503DE006D38BB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,7 +239,6 @@
 			files = (
 				B0553B16234406640006EACF /* LaunchScreen.storyboard in Resources */,
 				B0553B13234406640006EACF /* Assets.xcassets in Resources */,
-				B0553B11234406620006EACF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,8 +256,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0553B0E234406620006EACF /* ViewController.swift in Sources */,
+				B0EE292923450652006D38BB /* ApplicationCoordinator.swift in Sources */,
+				B0553B0E234406620006EACF /* AlbumListViewController.swift in Sources */,
+				B0EE292B234508D4006D38BB /* AlbumListCoordinator.swift in Sources */,
 				B0553B0A234406620006EACF /* AppDelegate.swift in Sources */,
+				B0CB397E23450CDB006881B3 /* Constants.swift in Sources */,
+				B0A77B722344F6D100DB9DDE /* UIViewHelpers.swift in Sources */,
 				B0553B0C234406620006EACF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,14 +285,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B0553B0F234406620006EACF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B0553B10234406620006EACF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B0553B14234406640006EACF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
