@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AlbumListViewModelDelegate: class {
-    func didUpdateAlbumDataSource(_ albumDataSource: [Album])
+    func didUpdateAlbumDataSource()
 }
 
 class AlbumListViewModel {
@@ -19,13 +19,12 @@ class AlbumListViewModel {
     
     func fetchAlbumDataSource() {
         wrapperAPIRequest = APIWrapperRequest()
-        wrapperAPIRequest?.load() {[weak self] result in
+        wrapperAPIRequest?.load() { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let wrapper):
-                let albumCollection = wrapper.feed.results
-                self.albumDataSource = albumCollection
-                self.delegate?.didUpdateAlbumDataSource(albumCollection)
+                self.albumDataSource = wrapper.feed.results
+                self.delegate?.didUpdateAlbumDataSource()
             case .failure(let error):
                 print(error)
             }

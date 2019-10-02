@@ -22,7 +22,8 @@ final class ApplicationCoordinator: Coordinator {
         self.window = window
         rootViewController = UINavigationController()
         rootViewController.navigationBar.prefersLargeTitles = true
-        albumListCoordinator = AlbumListCoordinator(presenter: rootViewController)
+        albumListCoordinator = AlbumListCoordinator(presenter: rootViewController,
+                                                    viewModel: AlbumListViewModel())
     }
     
     func start() {

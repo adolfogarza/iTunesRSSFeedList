@@ -17,8 +17,8 @@ struct Album: Codable {
     var genres: [Genre]?
     var releaseDate: String?
     
-    var mainGenre: String? {
-        return genres?.first?.name
+    var albumGenres: String? {
+        return genres?.map { $0.name }.joined(separator: ", ")
     }
     
     private enum CodingKeys: String, CodingKey {
