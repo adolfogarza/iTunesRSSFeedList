@@ -10,6 +10,8 @@ import Foundation
 
 enum NetworkError: Error {
     case missingData
+    case missingNetworkRequestInstance
+    case invalidEndpointURL
 }
 
 extension NetworkError: LocalizedError {
@@ -17,6 +19,10 @@ extension NetworkError: LocalizedError {
         switch self {
         case .missingData:
             return NSLocalizedString("The requested data object is nil", comment: "missing data")
+        case .missingNetworkRequestInstance:
+            return NSLocalizedString("The network request instance is nil", comment: "missing instance")
+        case .invalidEndpointURL:
+            return NSLocalizedString("The provided endpoint URL is invalid", comment: "invalid endpoint URL")
         }
     }
 }

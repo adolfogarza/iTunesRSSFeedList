@@ -13,20 +13,19 @@ protocol AlbumListViewControllerDelegate: class {
 }
 
 final class AlbumListViewController: UIViewController {
-    private var tableView: UITableView?
+    private var tableView = UITableView()
     weak var delegate: AlbumListViewControllerDelegate?
+    var viewModel = AlbumListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.backgroundColor = UIColor.white
+        viewModel.delegate = self
         setupTableView()
+        viewModel.fetchAlbumDataSource()
     }
     
     private func setupTableView() {
-        tableView = UITableView()
-        guard let tableView = tableView else { return }
-        
         view.addSubview(tableView)
         tableView.pinToParentEdges(shouldUseTopMarginsGuide: true)
         tableView.delegate = self
@@ -36,12 +35,12 @@ final class AlbumListViewController: UIViewController {
 
 extension AlbumListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return viewModel.albumDataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = "Album Name"
+        cell.textLabel?.text = viewModel.albumDataSource[indexPath.row].name
         return cell
     }
 }
@@ -49,5 +48,11 @@ extension AlbumListViewController: UITableViewDataSource {
 extension AlbumListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+}
+
+extension AlbumListViewController: AlbumListViewModelDelegate {
+    func didUpdateAlbumDataSource(_ albumDataSource: [Album]) {
+        tableView.reloadData()
     }
 }

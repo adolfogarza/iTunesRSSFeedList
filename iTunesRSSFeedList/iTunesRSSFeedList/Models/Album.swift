@@ -9,16 +9,16 @@
 import Foundation
 
 struct Album: Codable {
-    var artistName: String
+    var artistName: String?
     var name: String
-    var artworkURL: String
-    var copyright: String
-    var albumURL: String
-    var genres: [Genre]
-    var releaseDate: String
+    var artworkURL: String?
+    var copyright: String?
+    var albumURL: String?
+    var genres: [Genre]?
+    var releaseDate: String?
     
     var mainGenre: String? {
-        return genres.first?.name
+        return genres?.first?.name
     }
     
     private enum CodingKeys: String, CodingKey {

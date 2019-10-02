@@ -11,26 +11,52 @@ import Foundation
 protocol NetworkRequest: class {
     associatedtype Model
     func load(withCompletion completion: @escaping (Result<Model, Error>) -> Void)
-    func decode(_ data: Data) -> Model
+    func decode(_ data: Data) -> (Result<Model, Error>)
 }
 
 extension NetworkRequest {
-    func request(_ url: URL, withCompletion completion: @escaping (Result<Model, Error>) -> Void) {
+    fileprivate func request(_ url: URL, withCompletion completion: @escaping (Result<Model, Error>) -> Void) {
         let task = URLSession.shared.dataTask(with: url, completionHandler: { [weak self] (data: Data?, response: URLResponse?, error: Error?) -> Void in
-            if let error = error {
-                completion(.failure(error))
+            guard let self = self else {
+                completion(.failure(NetworkError.missingNetworkRequestInstance))
+                return
             }
             
-            guard let data = data, let self = self else {
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
                 completion(.failure(NetworkError.missingData))
                 return
             }
             
             DispatchQueue.main.async {
-                completion(.success(self.decode(data)))
+                completion(self.decode(data))
             }
         })
         
         task.resume()
+    }
+}
+
+class APIWrapperRequest: NetworkRequest {
+    func load(withCompletion completion: @escaping (Result<APIWrapper, Error>) -> Void) {
+        guard let iTunesTopAlbumsURL = URL(string: Constants.endpointURL) else {
+            completion(.failure(NetworkError.invalidEndpointURL))
+            return
+        }
+        
+        request(iTunesTopAlbumsURL, withCompletion: completion)
+    }
+    
+    func decode(_ data: Data) -> (Result<APIWrapper, Error>) {
+        do {
+            let wrapper = try JSONDecoder().decode(APIWrapper.self, from: data)
+            return .success(wrapper)
+        } catch {
+            return .failure(error)
+        }
     }
 }
