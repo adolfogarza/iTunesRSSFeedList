@@ -14,9 +14,9 @@ protocol Coordinator {
 }
 
 final class ApplicationCoordinator: Coordinator {
-    let window: UIWindow
-    let rootViewController: UINavigationController
-    let albumListCoordinator: AlbumListCoordinator
+    private let window: UIWindow
+    private let rootViewController: UINavigationController
+    private let albumListCoordinator: AlbumListCoordinator
     
     init(window: UIWindow) {
         self.window = window

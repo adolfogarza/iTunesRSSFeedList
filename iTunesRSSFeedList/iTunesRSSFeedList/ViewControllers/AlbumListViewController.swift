@@ -8,9 +8,13 @@
 
 import UIKit
 
+protocol AlbumListViewControllerDelegate: class {
+    func didSelectAlbum(_ album: Album)
+}
+
 final class AlbumListViewController: UIViewController {
-    
     private var tableView: UITableView?
+    weak var delegate: AlbumListViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +34,7 @@ final class AlbumListViewController: UIViewController {
     }
 }
 
-extension AlbumListViewController: UITableViewDelegate, UITableViewDataSource {
+extension AlbumListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -39,5 +43,11 @@ extension AlbumListViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = UITableViewCell()
         cell.textLabel?.text = "Album Name"
         return cell
+    }
+}
+
+extension AlbumListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }
