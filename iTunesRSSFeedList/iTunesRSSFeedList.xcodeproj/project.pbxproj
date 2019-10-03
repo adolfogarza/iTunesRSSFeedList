@@ -17,6 +17,7 @@
 		B080512D2345300700D0E1CC /* APIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080512C2345300600D0E1CC /* APIWrapper.swift */; };
 		B080512F23453B7300D0E1CC /* AlbumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080512E23453B7300D0E1CC /* AlbumListViewModel.swift */; };
 		B08051312345632D00D0E1CC /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08051302345632D00D0E1CC /* AlbumTableViewCell.swift */; };
+		B0805134234625A200D0E1CC /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0805133234625A200D0E1CC /* ImageCache.swift */; };
 		B0A77B722344F6D100DB9DDE /* UIViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A77B712344F6D100DB9DDE /* UIViewHelpers.swift */; };
 		B0CB397E23450CDB006881B3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB397D23450CDB006881B3 /* Constants.swift */; };
 		B0CB398123451164006881B3 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB398023451164006881B3 /* Album.swift */; };
@@ -51,6 +52,7 @@
 		B080512C2345300600D0E1CC /* APIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWrapper.swift; sourceTree = "<group>"; };
 		B080512E23453B7300D0E1CC /* AlbumListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewModel.swift; sourceTree = "<group>"; };
 		B08051302345632D00D0E1CC /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
+		B0805133234625A200D0E1CC /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		B0A77B712344F6D100DB9DDE /* UIViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewHelpers.swift; sourceTree = "<group>"; };
 		B0CB397D23450CDB006881B3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B0CB398023451164006881B3 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
@@ -124,6 +126,14 @@
 			path = iTunesRSSFeedListTests;
 			sourceTree = "<group>";
 		};
+		B08051322346259100D0E1CC /* Image Caching */ = {
+			isa = PBXGroup;
+			children = (
+				B0805133234625A200D0E1CC /* ImageCache.swift */,
+			);
+			path = "Image Caching";
+			sourceTree = "<group>";
+		};
 		B0A77B6F2344F4E500DB9DDE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +154,7 @@
 		B0CB397F23451034006881B3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B08051322346259100D0E1CC /* Image Caching */,
 				B0CB39842345149A006881B3 /* Networking */,
 			);
 			path = Services;
@@ -293,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0805134234625A200D0E1CC /* ImageCache.swift in Sources */,
 				B0CB3983234512FF006881B3 /* Genre.swift in Sources */,
 				B0EE292923450652006D38BB /* ApplicationCoordinator.swift in Sources */,
 				B080512B23451C9600D0E1CC /* NetworkError.swift in Sources */,

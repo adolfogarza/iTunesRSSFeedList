@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol NetworkRequest: class {
     associatedtype Model
@@ -41,7 +42,7 @@ extension NetworkRequest {
     }
 }
 
-class APIWrapperRequest: NetworkRequest {
+final class APIWrapperRequest: NetworkRequest {
     func load(withCompletion completion: @escaping (Result<APIWrapper, Error>) -> Void) {
         guard let iTunesTopAlbumsURL = URL(string: Constants.endpointURL) else {
             completion(.failure(NetworkError.invalidEndpointURL))
@@ -58,5 +59,35 @@ class APIWrapperRequest: NetworkRequest {
         } catch {
             return .failure(error)
         }
+    }
+}
+
+final class ImageRequest: NetworkRequest {
+    var imageURLString: String
+    
+    init(_ imageURLString: String) {
+        self.imageURLString = imageURLString
+    }
+    
+    func load(withCompletion completion: @escaping (Result<UIImage, Error>) -> Void) {
+        guard let imageURL = URL(string: imageURLString) else {
+            completion(.failure(NetworkError.invalidImageURL))
+            return
+        }
+        
+        if let cachedImage = ImageCache.shared.image(forKey: imageURLString as NSString) {
+            completion(.success(cachedImage))
+        } else {
+            request(imageURL, withCompletion: completion)
+        }
+    }
+    
+    func decode(_ data: Data) -> (Result<UIImage, Error>) {
+        guard let imageFromData = UIImage(data: data) else {
+            return .failure(NetworkError.misformedImageFromData)
+        }
+        
+        ImageCache.shared.store(imageFromData, withKey: imageURLString as NSString)
+        return .success(imageFromData)
     }
 }

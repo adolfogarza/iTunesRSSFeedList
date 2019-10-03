@@ -29,6 +29,8 @@ final class AlbumListCoordinator: Coordinator {
     }
 }
 
+// MARK: AlbumListViewControllerDelegate Protocol Conformance
+
 extension AlbumListCoordinator: AlbumListViewControllerDelegate {
     func didSelectAlbum(_ album: Album) {
         print("album: \(album.name)")

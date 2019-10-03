@@ -8,31 +8,20 @@
 
 import UIKit
 
-class AlbumTableViewCell: UITableViewCell {
+final class AlbumTableViewCell: UITableViewCell {
     static let identifier = "AlbumTableViewCell"
     private let albumNameLabel = UILabel()
     private let artistNameLabel = UILabel()
     private let albumImageView = UIImageView()
+    private var imageRequest: ImageRequest?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupAlbumNameLabelProperties()
+        setupArtistNameLabelProperties()
         
-        addSubview(albumImageView)
-        setupAlbumNameLabel()
-        setupArtistNameLabel()
-        
-        let albumInformationView = UIView()
-        albumInformationView.addSubview(albumNameLabel)
-        albumInformationView.addSubview(artistNameLabel)
-        addSubview(albumInformationView)
-        
-        albumNameLabel.constraintTo(topAnchor: albumInformationView.topAnchor, leftAnchor: albumInformationView.leftAnchor, rightAnchor: albumInformationView.rightAnchor, topPadding: 5, leftPadding: 5, rightPadding: 5)
-        
-        artistNameLabel.constraintTo(topAnchor: albumNameLabel.bottomAnchor, bottomAnchor: albumInformationView.bottomAnchor, leftAnchor: albumInformationView.leftAnchor, rightAnchor: albumInformationView.rightAnchor, topPadding: 5, bottomPadding: 5, leftPadding: 5, rightPadding: 5)
-        
-        albumImageView.constraintTo(topAnchor: topAnchor, bottomAnchor: bottomAnchor, leftAnchor: leftAnchor, rightAnchor: nil, width: Constants.preferredAlbumArtworkHeightInList, height: Constants.preferredAlbumArtworkHeightInList, topPadding: 5, bottomPadding: 5, leftPadding: 15, bottomAnchorPriority: 999)
-         
-        albumInformationView.constraintTo(leftAnchor: albumImageView.rightAnchor, rightAnchor: rightAnchor, verticalCenterAnchor: albumImageView.centerYAnchor, leftPadding: 10, rightPadding: 25)
+        setupAlbumImageViewLayout()
+        setupAlbumInformationViewLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -45,25 +34,66 @@ class AlbumTableViewCell: UITableViewCell {
         albumImageView.image = nil
     }
     
-    private func setupArtistNameLabel() {
+    // MARK: UI Element Property Setup
+    
+    private func setupArtistNameLabelProperties() {
         artistNameLabel.numberOfLines = 1
         artistNameLabel.textAlignment = .left
         artistNameLabel.textColor = .black
         artistNameLabel.font = UIFont.systemFont(ofSize: 17)
     }
     
-    private func setupAlbumNameLabel() {
+    private func setupAlbumNameLabelProperties() {
         albumNameLabel.numberOfLines = 2
         albumNameLabel.textAlignment = .left
         albumNameLabel.textColor = .black
         albumNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
     }
     
+    private func setupAlbumImageViewProperties() {
+        albumImageView.contentMode = .scaleAspectFit
+        albumImageView.clipsToBounds = true
+    }
+    
+    // MARK: UI Element Layout Setup
+    
+    private func setupAlbumImageViewLayout() {
+        addSubview(albumImageView)
+        albumImageView.constraintTo(topAnchor: topAnchor, bottomAnchor: bottomAnchor, leftAnchor: leftAnchor, rightAnchor: nil, width: Constants.preferredAlbumArtworkHeightInList, height: Constants.preferredAlbumArtworkHeightInList, topPadding: 5, bottomPadding: 5, leftPadding: 15, bottomAnchorPriority: 999)
+    }
+    
+    private func setupAlbumInformationViewLayout() {
+        let albumInformationView = UIView()
+        albumInformationView.addSubview(albumNameLabel)
+        albumInformationView.addSubview(artistNameLabel)
+        addSubview(albumInformationView)
+        
+        albumNameLabel.constraintTo(topAnchor: albumInformationView.topAnchor, leftAnchor: albumInformationView.leftAnchor, rightAnchor: albumInformationView.rightAnchor, topPadding: 5, leftPadding: 5, rightPadding: 5)
+        
+        artistNameLabel.constraintTo(topAnchor: albumNameLabel.bottomAnchor, bottomAnchor: albumInformationView.bottomAnchor, leftAnchor: albumInformationView.leftAnchor, rightAnchor: albumInformationView.rightAnchor, topPadding: 5, bottomPadding: 5, leftPadding: 5, rightPadding: 5)
+        
+        albumInformationView.constraintTo(leftAnchor: albumImageView.rightAnchor, rightAnchor: rightAnchor, verticalCenterAnchor: albumImageView.centerYAnchor, leftPadding: 10, rightPadding: 25)
+    }
+    
+    // MARK: Model Bind
+    
     func bind(model: Album) {
         albumNameLabel.text = model.name
         artistNameLabel.text = model.artistName
         
-        //        albumImageView.clipsToBounds = true
-        //        albumImageView.contentMode = .scaleAspectFit
+        if let imageURLString = model.artworkURL {
+            imageRequest = ImageRequest(imageURLString)
+            imageRequest?.load() { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let albumImage):
+                    self.albumImageView.image = albumImage
+                    self.setupAlbumImageViewProperties()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }

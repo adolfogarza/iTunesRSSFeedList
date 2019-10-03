@@ -12,6 +12,8 @@ enum NetworkError: Error {
     case missingData
     case missingNetworkRequestInstance
     case invalidEndpointURL
+    case invalidImageURL
+    case misformedImageFromData
 }
 
 extension NetworkError: LocalizedError {
@@ -23,6 +25,10 @@ extension NetworkError: LocalizedError {
             return NSLocalizedString("The network request instance is nil", comment: "missing instance")
         case .invalidEndpointURL:
             return NSLocalizedString("The provided endpoint URL is invalid", comment: "invalid endpoint URL")
+        case .invalidImageURL:
+            return NSLocalizedString("The provided image URL is invalid", comment: "invalid image URL")
+        case .misformedImageFromData:
+            return NSLocalizedString("The provided data cannot form an image", comment: "missformed image from data")
         }
     }
 }
