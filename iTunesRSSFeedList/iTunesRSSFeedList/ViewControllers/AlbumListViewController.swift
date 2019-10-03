@@ -39,6 +39,9 @@ final class AlbumListViewController: UIViewController {
         tableView.pinToParentEdges(shouldUseTopMarginsGuide: true)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(AlbumTableViewCell.self, forCellReuseIdentifier: AlbumTableViewCell.identifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44
     }
 }
 
@@ -48,8 +51,13 @@ extension AlbumListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = viewModel?.albumDataSource[indexPath.row].name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AlbumTableViewCell.identifier, for: indexPath) as? AlbumTableViewCell,
+            let model = viewModel?.albumDataSource[indexPath.row] else {
+                return UITableViewCell()
+        }
+        
+        
+        cell.bind(model: model)
         return cell
     }
 }

@@ -20,4 +20,70 @@ extension UIView {
         rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
         bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
     }
+    
+    func constraintTo(topAnchor: NSLayoutYAxisAnchor? = nil,
+                      bottomAnchor: NSLayoutYAxisAnchor? = nil,
+                      leftAnchor: NSLayoutXAxisAnchor? = nil,
+                      rightAnchor: NSLayoutXAxisAnchor? = nil,
+                      verticalCenterAnchor: NSLayoutYAxisAnchor? = nil,
+                      horizontalCenterAnchor: NSLayoutXAxisAnchor? = nil,
+                      width: CGFloat = 0.0,
+                      height: CGFloat = 0.0,
+                      topPadding: CGFloat = 0.0,
+                      bottomPadding: CGFloat = 0.0,
+                      leftPadding: CGFloat = 0.0,
+                      rightPadding: CGFloat = 0.0,
+                      topAnchorPriority: Float = 1000,
+                      bottomAnchorPriority: Float = 1000,
+                      leftAnchorPriority: Float = 1000,
+                      rightAnchorPriority: Float = 1000,
+                      widthPriority: Float = 1000,
+                      heightPriority: Float = 1000) {
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        if let topAnchor = topAnchor {
+            let topAnchorConstraint = self.topAnchor.constraint(equalTo: topAnchor, constant: topPadding)
+            topAnchorConstraint.priority = UILayoutPriority(topAnchorPriority)
+            topAnchorConstraint.isActive = true
+        }
+        
+        if let bottomAnchor = bottomAnchor {
+            let bottomAnchorConstraint = self.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -bottomPadding)
+            bottomAnchorConstraint.priority = UILayoutPriority(bottomAnchorPriority)
+            bottomAnchorConstraint.isActive = true
+        }
+        
+        if let leftAnchor = leftAnchor {
+            let leftAnchorConstraint = self.leftAnchor.constraint(equalTo: leftAnchor, constant: leftPadding)
+            leftAnchorConstraint.priority = UILayoutPriority(leftAnchorPriority)
+            leftAnchorConstraint.isActive = true
+        }
+        
+        if let rightAnchor = rightAnchor {
+            let rightAnchorConstraint = self.rightAnchor.constraint(equalTo: rightAnchor, constant: -rightPadding)
+            rightAnchorConstraint.priority = UILayoutPriority(rightAnchorPriority)
+            rightAnchorConstraint.isActive = true
+        }
+        
+        if width > 0.0 {
+            let widthAnchorConstraint = widthAnchor.constraint(equalToConstant: width)
+            widthAnchorConstraint.priority = UILayoutPriority(widthPriority)
+            widthAnchorConstraint.isActive = true
+        }
+        
+        if height > 0.0 {
+            let heightAnchorConstraint = heightAnchor.constraint(equalToConstant: height)
+            heightAnchorConstraint.priority = UILayoutPriority(heightPriority)
+            heightAnchorConstraint.isActive = true
+        }
+        
+        if let verticalCenterAnchor = verticalCenterAnchor {
+            centerYAnchor.constraint(equalTo: verticalCenterAnchor).isActive = true
+        }
+        
+        if let horizontalCenterAnchor = horizontalCenterAnchor {
+            centerXAnchor.constraint(equalTo: horizontalCenterAnchor).isActive = true
+        }
+    }
 }

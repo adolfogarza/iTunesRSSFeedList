@@ -1,0 +1,69 @@
+//
+//  AlbumTableViewCell.swift
+//  iTunesRSSFeedList
+//
+//  Created by MacBook Pro 13 on 10/2/19.
+//  Copyright © 2019 Adolfo. All rights reserved.
+//
+
+import UIKit
+
+class AlbumTableViewCell: UITableViewCell {
+    static let identifier = "AlbumTableViewCell"
+    private let albumNameLabel = UILabel()
+    private let artistNameLabel = UILabel()
+    private let albumImageView = UIImageView()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        addSubview(albumImageView)
+        setupAlbumNameLabel()
+        setupArtistNameLabel()
+        
+        let albumInformationView = UIView()
+        albumInformationView.addSubview(albumNameLabel)
+        albumInformationView.addSubview(artistNameLabel)
+        addSubview(albumInformationView)
+        
+        albumNameLabel.constraintTo(topAnchor: albumInformationView.topAnchor, leftAnchor: albumInformationView.leftAnchor, rightAnchor: albumInformationView.rightAnchor, topPadding: 5, leftPadding: 5, rightPadding: 5)
+        
+        artistNameLabel.constraintTo(topAnchor: albumNameLabel.bottomAnchor, bottomAnchor: albumInformationView.bottomAnchor, leftAnchor: albumInformationView.leftAnchor, rightAnchor: albumInformationView.rightAnchor, topPadding: 5, bottomPadding: 5, leftPadding: 5, rightPadding: 5)
+        
+        albumImageView.constraintTo(topAnchor: topAnchor, bottomAnchor: bottomAnchor, leftAnchor: leftAnchor, rightAnchor: nil, width: Constants.preferredAlbumArtworkHeightInList, height: Constants.preferredAlbumArtworkHeightInList, topPadding: 5, bottomPadding: 5, leftPadding: 15, bottomAnchorPriority: 999)
+         
+        albumInformationView.constraintTo(leftAnchor: albumImageView.rightAnchor, rightAnchor: rightAnchor, verticalCenterAnchor: albumImageView.centerYAnchor, leftPadding: 10, rightPadding: 25)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        artistNameLabel.text = nil
+        albumNameLabel.text = nil
+        albumImageView.image = nil
+    }
+    
+    private func setupArtistNameLabel() {
+        artistNameLabel.numberOfLines = 1
+        artistNameLabel.textAlignment = .left
+        artistNameLabel.textColor = .black
+        artistNameLabel.font = UIFont.systemFont(ofSize: 17)
+    }
+    
+    private func setupAlbumNameLabel() {
+        albumNameLabel.numberOfLines = 2
+        albumNameLabel.textAlignment = .left
+        albumNameLabel.textColor = .black
+        albumNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+    }
+    
+    func bind(model: Album) {
+        albumNameLabel.text = model.name
+        artistNameLabel.text = model.artistName
+        
+        //        albumImageView.clipsToBounds = true
+        //        albumImageView.contentMode = .scaleAspectFit
+    }
+}
