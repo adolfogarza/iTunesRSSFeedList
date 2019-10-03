@@ -13,24 +13,34 @@ protocol AlbumListViewControllerDelegate: class {
 }
 
 final class AlbumListViewController: UIViewController {
+    
+    // MARK: Properties
+    
     private var tableView = UITableView()
     private var activityIndicatorView = UIView()
     weak var delegate: AlbumListViewControllerDelegate?
     var viewModel: AlbumListViewModel?
+    
+    // MARK: View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewProperties()
         setupTableViewPropertiesAndLayout()
         setupActivityIndicatorPropertiesAndLayout()
-        
-        viewModel?.delegate = self
-        viewModel?.fetchAlbumDataSource()
+        setupViewModelAndFetchData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tableView.isUserInteractionEnabled = true
+    }
+    
+    // MARK: View Model Setup
+    
+    private func setupViewModelAndFetchData() {
+        viewModel?.delegate = self
+        viewModel?.fetchAlbumDataSource()
     }
     
     // MARK: UI Element Property And Layout Setup
@@ -68,13 +78,13 @@ extension AlbumListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AlbumTableViewCell.identifier, for: indexPath) as? AlbumTableViewCell,
+        guard let albumCell = tableView.dequeueReusableCell(withIdentifier: AlbumTableViewCell.identifier, for: indexPath) as? AlbumTableViewCell,
             let model = viewModel?.albumDataSource[indexPath.row] else {
                 return UITableViewCell()
         }
         
-        cell.bind(model: model)
-        return cell
+        albumCell.bind(model: model)
+        return albumCell
     }
 }
 

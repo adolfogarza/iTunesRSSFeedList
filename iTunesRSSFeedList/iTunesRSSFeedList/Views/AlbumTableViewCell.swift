@@ -9,11 +9,16 @@
 import UIKit
 
 final class AlbumTableViewCell: UITableViewCell {
+    
+    // MARK: Properties
+    
     static let identifier = "AlbumTableViewCell"
     private let albumNameLabel = UILabel()
     private let artistNameLabel = UILabel()
     private let albumImageView = UIImageView()
     private var imageRequest: ImageRequest?
+    
+    // MARK: Overriding And Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -29,6 +34,7 @@ final class AlbumTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         artistNameLabel.text = nil
         albumNameLabel.text = nil
         albumImageView.image = nil
