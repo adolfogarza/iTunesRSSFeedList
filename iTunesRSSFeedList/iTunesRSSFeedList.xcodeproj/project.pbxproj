@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B010760C2347A12C008CE3D9 /* GridGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B010760B2347A12C008CE3D9 /* GridGenerator.swift */; };
+		B010760E2347A181008CE3D9 /* AlbumGridConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B010760D2347A181008CE3D9 /* AlbumGridConfiguration.swift */; };
+		B01076112347AC04008CE3D9 /* GridUILabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01076102347AC04008CE3D9 /* GridUILabels.swift */; };
+		B01076132347AFF8008CE3D9 /* GridSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01076122347AFF8008CE3D9 /* GridSeparatorView.swift */; };
 		B0553B0A234406620006EACF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0553B09234406620006EACF /* AppDelegate.swift */; };
 		B0553B0C234406620006EACF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0553B0B234406620006EACF /* SceneDelegate.swift */; };
 		B0553B0E234406620006EACF /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0553B0D234406620006EACF /* AlbumListViewController.swift */; };
@@ -41,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B010760B2347A12C008CE3D9 /* GridGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGenerator.swift; sourceTree = "<group>"; };
+		B010760D2347A181008CE3D9 /* AlbumGridConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumGridConfiguration.swift; sourceTree = "<group>"; };
+		B01076102347AC04008CE3D9 /* GridUILabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridUILabels.swift; sourceTree = "<group>"; };
+		B01076122347AFF8008CE3D9 /* GridSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSeparatorView.swift; sourceTree = "<group>"; };
 		B0553B06234406620006EACF /* iTunesRSSFeedList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesRSSFeedList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0553B09234406620006EACF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0553B0B234406620006EACF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +94,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B010760A2347A0E9008CE3D9 /* Grid Generator */ = {
+			isa = PBXGroup;
+			children = (
+				B010760B2347A12C008CE3D9 /* GridGenerator.swift */,
+				B010760D2347A181008CE3D9 /* AlbumGridConfiguration.swift */,
+			);
+			path = "Grid Generator";
+			sourceTree = "<group>";
+		};
+		B010760F2347ABE6008CE3D9 /* CustomUIElements */ = {
+			isa = PBXGroup;
+			children = (
+				B01076102347AC04008CE3D9 /* GridUILabels.swift */,
+				B01076122347AFF8008CE3D9 /* GridSeparatorView.swift */,
+			);
+			path = CustomUIElements;
+			sourceTree = "<group>";
+		};
 		B0553AFD234406620006EACF = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +187,7 @@
 		B0CB397F23451034006881B3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B010760A2347A0E9008CE3D9 /* Grid Generator */,
 				B08051322346259100D0E1CC /* Image Caching */,
 				B0CB39842345149A006881B3 /* Networking */,
 			);
@@ -208,6 +235,7 @@
 		B0EE2927234503DE006D38BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B010760F2347ABE6008CE3D9 /* CustomUIElements */,
 				B08051302345632D00D0E1CC /* AlbumTableViewCell.swift */,
 			);
 			path = Views;
@@ -325,11 +353,15 @@
 				B0CB397E23450CDB006881B3 /* Constants.swift in Sources */,
 				B0A77B722344F6D100DB9DDE /* UIViewHelpers.swift in Sources */,
 				B080513A234632D400D0E1CC /* AlbumDetailViewModel.swift in Sources */,
+				B01076132347AFF8008CE3D9 /* GridSeparatorView.swift in Sources */,
 				B0553B0C234406620006EACF /* SceneDelegate.swift in Sources */,
+				B01076112347AC04008CE3D9 /* GridUILabels.swift in Sources */,
 				B08051312345632D00D0E1CC /* AlbumTableViewCell.swift in Sources */,
 				B0805136234632AB00D0E1CC /* AlbumDetailViewController.swift in Sources */,
 				B080512D2345300700D0E1CC /* APIWrapper.swift in Sources */,
 				B0805138234632C300D0E1CC /* AlbumDetailCoordinator.swift in Sources */,
+				B010760C2347A12C008CE3D9 /* GridGenerator.swift in Sources */,
+				B010760E2347A181008CE3D9 /* AlbumGridConfiguration.swift in Sources */,
 				B0CB398123451164006881B3 /* Album.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

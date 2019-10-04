@@ -87,7 +87,7 @@ final class ImageRequest: NetworkRequest {
             return .failure(NetworkError.misformedImageFromData)
         }
         
-        ImageCache.shared.store(imageFromData, withKey: imageURLString as NSString)
+        ImageCache.shared.setImage(imageFromData, ForKey: imageURLString as NSString)
         return .success(imageFromData)
     }
 }

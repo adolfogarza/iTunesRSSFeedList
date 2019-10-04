@@ -30,4 +30,12 @@ struct Album: Codable {
         case genres
         case releaseDate
     }
+    
+    enum DescriptorText: String {
+        case artistName = "Artist Name"
+        case name = "Album Name"
+        case copyright = "Copyright"
+        case genres = "Genres"
+        case releaseDate = "Release Date"
+    }
 }

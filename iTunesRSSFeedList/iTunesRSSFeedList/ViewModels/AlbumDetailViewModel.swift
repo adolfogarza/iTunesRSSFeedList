@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+final class AlbumDetailViewModel {
+    let albumDataSource: Album
+    
+    init(withAlbumModel albumDataSource: Album) {
+        self.albumDataSource = albumDataSource
+    }
+}

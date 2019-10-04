@@ -13,6 +13,7 @@ final class AlbumListCoordinator: Coordinator {
     private let presenter: UINavigationController
     private let viewModel: AlbumListViewModel
     private var albumListViewController: AlbumListViewController?
+    private var albumDetailCoordinator: AlbumDetailCoordinator?
     
     init(presenter: UINavigationController, viewModel: AlbumListViewModel) {
         self.presenter = presenter
@@ -33,6 +34,10 @@ final class AlbumListCoordinator: Coordinator {
 
 extension AlbumListCoordinator: AlbumListViewControllerDelegate {
     func didSelectAlbum(_ album: Album) {
-        print("album: \(album.name)")
+        let albumDetailViewModel = AlbumDetailViewModel(withAlbumModel: album)
+        let albumDetailCoordinator = AlbumDetailCoordinator(presenter: presenter,
+                                                            viewModel: albumDetailViewModel)
+        albumDetailCoordinator.start()
+        self.albumDetailCoordinator = albumDetailCoordinator
     }
 }

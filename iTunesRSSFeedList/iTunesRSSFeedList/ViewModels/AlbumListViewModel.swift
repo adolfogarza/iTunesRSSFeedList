@@ -13,7 +13,7 @@ protocol AlbumListViewModelDelegate: class {
 }
 
 final class AlbumListViewModel {
-    var albumDataSource: [Album] = []
+    var albumCollectionDataSource: [Album] = []
     weak var delegate: AlbumListViewModelDelegate?
     private var wrapperAPIRequest: APIWrapperRequest?
     
@@ -23,7 +23,7 @@ final class AlbumListViewModel {
             guard let self = self else { return }
             switch result {
             case .success(let wrapper):
-                self.albumDataSource = wrapper.feed.results
+                self.albumCollectionDataSource = wrapper.feed.results
                 self.delegate?.didUpdateAlbumDataSource()
             case .failure(let error):
                 print(error.localizedDescription)

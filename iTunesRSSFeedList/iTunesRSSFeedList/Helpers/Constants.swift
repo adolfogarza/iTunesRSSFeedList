@@ -11,6 +11,8 @@ import UIKit
 
 struct Constants {
     static let albumListTitle = "iTunes Top Albums"
-    static let endpointURL = "https://rss.itunes.apple.com/api/v1/us/apple-music/top-albums/all/30/non-explicit.json"
+    static let albumDetailTitle = "Album Details"
+    static let endpointURL = "https://rss.itunes.apple.com/api/v1/us/apple-music/top-albums/all/100/explicit.json"
     static let preferredAlbumArtworkHeightInList: CGFloat = 150.0
+    static let preferredAlbumArtworkHeightInDetail: CGFloat = 330.0
 }

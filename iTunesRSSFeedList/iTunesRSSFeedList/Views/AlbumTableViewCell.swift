@@ -27,6 +27,8 @@ final class AlbumTableViewCell: UITableViewCell {
         
         setupAlbumImageViewLayout()
         setupAlbumInformationViewLayout()
+        
+        accessoryType = .disclosureIndicator
     }
     
     required init?(coder: NSCoder) {
@@ -38,6 +40,7 @@ final class AlbumTableViewCell: UITableViewCell {
         artistNameLabel.text = nil
         albumNameLabel.text = nil
         albumImageView.image = nil
+        imageRequest = nil
     }
     
     // MARK: UI Element Property Setup
@@ -73,7 +76,7 @@ final class AlbumTableViewCell: UITableViewCell {
         albumInformationView.addSubview(albumNameLabel)
         albumInformationView.addSubview(artistNameLabel)
         addSubview(albumInformationView)
-        
+                
         albumNameLabel.constraintTo(topAnchor: albumInformationView.topAnchor, leftAnchor: albumInformationView.leftAnchor, rightAnchor: albumInformationView.rightAnchor, topPadding: 5, leftPadding: 5, rightPadding: 5)
         
         artistNameLabel.constraintTo(topAnchor: albumNameLabel.bottomAnchor, bottomAnchor: albumInformationView.bottomAnchor, leftAnchor: albumInformationView.leftAnchor, rightAnchor: albumInformationView.rightAnchor, topPadding: 5, bottomPadding: 5, leftPadding: 5, rightPadding: 5)

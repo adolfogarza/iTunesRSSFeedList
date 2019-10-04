@@ -27,6 +27,8 @@ extension UIView {
                       rightAnchor: NSLayoutXAxisAnchor? = nil,
                       verticalCenterAnchor: NSLayoutYAxisAnchor? = nil,
                       horizontalCenterAnchor: NSLayoutXAxisAnchor? = nil,
+                      equalWidths: NSLayoutDimension? = nil,
+                      equalWidthsMultiplier: CGFloat? = nil,
                       width: CGFloat = 0.0,
                       height: CGFloat = 0.0,
                       topPadding: CGFloat = 0.0,
@@ -84,6 +86,10 @@ extension UIView {
         
         if let horizontalCenterAnchor = horizontalCenterAnchor {
             centerXAnchor.constraint(equalTo: horizontalCenterAnchor).isActive = true
+        }
+        
+        if let equalWidths = equalWidths, let equalWidthsMultiplier = equalWidthsMultiplier {
+            widthAnchor.constraint(equalTo: equalWidths, multiplier: equalWidthsMultiplier).isActive = true
         }
     }
 }

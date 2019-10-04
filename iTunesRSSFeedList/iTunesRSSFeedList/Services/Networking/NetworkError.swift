@@ -22,7 +22,7 @@ extension NetworkError: LocalizedError {
         case .missingData:
             return NSLocalizedString("The requested data object is nil", comment: "missing data")
         case .missingNetworkRequestInstance:
-            return NSLocalizedString("The network request instance is nil", comment: "missing instance")
+            return NSLocalizedString("The network request instance is nil (this could happen while scrolling or going away from an async operation, in that case this is not an error)", comment: "missing instance")
         case .invalidEndpointURL:
             return NSLocalizedString("The provided endpoint URL is invalid", comment: "invalid endpoint URL")
         case .invalidImageURL:

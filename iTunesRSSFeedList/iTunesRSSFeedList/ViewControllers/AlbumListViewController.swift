@@ -74,12 +74,12 @@ final class AlbumListViewController: UIViewController {
 
 extension AlbumListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.albumDataSource.count ?? 0
+        return viewModel?.albumCollectionDataSource.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let albumCell = tableView.dequeueReusableCell(withIdentifier: AlbumTableViewCell.identifier, for: indexPath) as? AlbumTableViewCell,
-            let model = viewModel?.albumDataSource[indexPath.row] else {
+            let model = viewModel?.albumCollectionDataSource[indexPath.row] else {
                 return UITableViewCell()
         }
         
@@ -92,9 +92,10 @@ extension AlbumListViewController: UITableViewDataSource {
 
 extension AlbumListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let selectedAlbum = viewModel?.albumDataSource[indexPath.row] else { return }
+        guard let selectedAlbum = viewModel?.albumCollectionDataSource[indexPath.row] else { return }
         tableView.isUserInteractionEnabled = false
         delegate?.didSelectAlbum(selectedAlbum)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
