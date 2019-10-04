@@ -22,7 +22,7 @@ struct AlbumGridConfiguration: GridConfiguration {
     }
     
     var elementSpacing: CGFloat {
-        return 20
+        return 10
     }
     
     init(album: Album) {

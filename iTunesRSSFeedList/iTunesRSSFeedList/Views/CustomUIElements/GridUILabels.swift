@@ -25,7 +25,7 @@ class GridTitleLabel: UILabel {
         translatesAutoresizingMaskIntoConstraints = false
         textAlignment = .left
         textColor = .lightGray
-        font = UIFont.systemFont(ofSize: 18)
+        font = UIFont.systemFont(ofSize: 16)
     }
 }
 
@@ -45,6 +45,6 @@ class GridValueLabel: UILabel {
         translatesAutoresizingMaskIntoConstraints = false
         textAlignment = .right
         textColor = .black
-        font = UIFont.systemFont(ofSize: 18)
+        font = UIFont.systemFont(ofSize: 16)
     }
 }

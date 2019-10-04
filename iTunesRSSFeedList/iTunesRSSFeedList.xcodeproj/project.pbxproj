@@ -26,6 +26,8 @@
 		B0805138234632C300D0E1CC /* AlbumDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0805137234632C300D0E1CC /* AlbumDetailCoordinator.swift */; };
 		B080513A234632D400D0E1CC /* AlbumDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0805139234632D400D0E1CC /* AlbumDetailViewModel.swift */; };
 		B0A77B722344F6D100DB9DDE /* UIViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A77B712344F6D100DB9DDE /* UIViewHelpers.swift */; };
+		B0C2B74C2347F25D005BF93A /* CustomUIColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C2B74B2347F25D005BF93A /* CustomUIColors.swift */; };
+		B0C2B74E2347F5A2005BF93A /* AlbumActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C2B74D2347F5A2005BF93A /* AlbumActionButton.swift */; };
 		B0CB397E23450CDB006881B3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB397D23450CDB006881B3 /* Constants.swift */; };
 		B0CB398123451164006881B3 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB398023451164006881B3 /* Album.swift */; };
 		B0CB3983234512FF006881B3 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB3982234512FF006881B3 /* Genre.swift */; };
@@ -68,6 +70,8 @@
 		B0805137234632C300D0E1CC /* AlbumDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailCoordinator.swift; sourceTree = "<group>"; };
 		B0805139234632D400D0E1CC /* AlbumDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewModel.swift; sourceTree = "<group>"; };
 		B0A77B712344F6D100DB9DDE /* UIViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewHelpers.swift; sourceTree = "<group>"; };
+		B0C2B74B2347F25D005BF93A /* CustomUIColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIColors.swift; sourceTree = "<group>"; };
+		B0C2B74D2347F5A2005BF93A /* AlbumActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionButton.swift; sourceTree = "<group>"; };
 		B0CB397D23450CDB006881B3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B0CB398023451164006881B3 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		B0CB3982234512FF006881B3 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 			children = (
 				B01076102347AC04008CE3D9 /* GridUILabels.swift */,
 				B01076122347AFF8008CE3D9 /* GridSeparatorView.swift */,
+				B0C2B74B2347F25D005BF93A /* CustomUIColors.swift */,
+				B0C2B74D2347F5A2005BF93A /* AlbumActionButton.swift */,
 			);
 			path = CustomUIElements;
 			sourceTree = "<group>";
@@ -357,10 +363,12 @@
 				B0553B0C234406620006EACF /* SceneDelegate.swift in Sources */,
 				B01076112347AC04008CE3D9 /* GridUILabels.swift in Sources */,
 				B08051312345632D00D0E1CC /* AlbumTableViewCell.swift in Sources */,
+				B0C2B74C2347F25D005BF93A /* CustomUIColors.swift in Sources */,
 				B0805136234632AB00D0E1CC /* AlbumDetailViewController.swift in Sources */,
 				B080512D2345300700D0E1CC /* APIWrapper.swift in Sources */,
 				B0805138234632C300D0E1CC /* AlbumDetailCoordinator.swift in Sources */,
 				B010760C2347A12C008CE3D9 /* GridGenerator.swift in Sources */,
+				B0C2B74E2347F5A2005BF93A /* AlbumActionButton.swift in Sources */,
 				B010760E2347A181008CE3D9 /* AlbumGridConfiguration.swift in Sources */,
 				B0CB398123451164006881B3 /* Album.swift in Sources */,
 			);
@@ -514,7 +522,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S2EKXNXGPT;
 				INFOPLIST_FILE = iTunesRSSFeedList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -522,6 +532,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = AdolfoGarza.iTunesRSSFeedList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -531,7 +542,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S2EKXNXGPT;
 				INFOPLIST_FILE = iTunesRSSFeedList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -539,6 +552,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = AdolfoGarza.iTunesRSSFeedList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -550,6 +564,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S2EKXNXGPT;
 				INFOPLIST_FILE = iTunesRSSFeedListTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -571,6 +586,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S2EKXNXGPT;
 				INFOPLIST_FILE = iTunesRSSFeedListTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

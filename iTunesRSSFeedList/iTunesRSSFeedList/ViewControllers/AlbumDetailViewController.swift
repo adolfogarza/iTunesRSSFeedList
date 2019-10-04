@@ -17,7 +17,7 @@ class AlbumDetailViewController: UIViewController {
     private var contentView = UIView()
     private var scrollView = UIScrollView()
     private var albumDetailGridStackView: UIStackView?
-    private var albumDetailActionButton: UIButton?
+    private var albumDetailActionButton: AlbumActionButton?
     private var imageRequest: ImageRequest?
     private var preferredButtonPadding: CGFloat = 20
     
@@ -35,7 +35,7 @@ class AlbumDetailViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupButtonTopConstraintIfContentViewHeightIsSmallerThanScrollView()
+        setupButtonTopConstraintIfContentViewHeightIsSmallerThanScrollViewHeight()
     }
     
     // MARK: Setup UI Element Properties And Layout
@@ -82,27 +82,23 @@ class AlbumDetailViewController: UIViewController {
         let albumDetailGridStackView = GridGenerator().createStackViewGrid(fromGridConfiguration: albumGridConfiguration)
         
         contentView.addSubview(albumDetailGridStackView)
-        albumDetailGridStackView.constraintTo(topAnchor: albumImageView.bottomAnchor, leftAnchor: contentView.leftAnchor, rightAnchor: contentView.rightAnchor, topPadding: 40 ,leftPadding: 30, rightPadding: 30)
+        albumDetailGridStackView.constraintTo(topAnchor: albumImageView.bottomAnchor, leftAnchor: contentView.leftAnchor, rightAnchor: contentView.rightAnchor, topPadding: 40 ,leftPadding: 20, rightPadding: 20)
         
         self.albumDetailGridStackView = albumDetailGridStackView
     }
     
     private func setupAlbumDetailActionButtonPropertiesAndLayout() {
         guard let albumDetailGridStackView = albumDetailGridStackView else { return }
-        
-        let albumDetailActionButton = UIButton()
-        albumDetailActionButton.setTitleColor(.white, for: .normal)
-        albumDetailActionButton.setTitle(Constants.iTunesButtonTitle, for: .normal)
-        albumDetailActionButton.backgroundColor = .red
-        
+        let albumDetailActionButton = AlbumActionButton()
+        albumDetailActionButton.addTarget(self, action: #selector(albumButtonAction), for: .touchUpInside)
         contentView.addSubview(albumDetailActionButton)
         
-        albumDetailActionButton.constraintTo(topAnchor: albumDetailGridStackView.bottomAnchor, bottomAnchor: contentView.bottomAnchor, leftAnchor: contentView.leftAnchor, rightAnchor: contentView.rightAnchor, topPadding: preferredButtonPadding, bottomPadding: preferredButtonPadding, leftPadding: preferredButtonPadding, rightPadding: preferredButtonPadding, topAnchorPriority: 999)
+        albumDetailActionButton.constraintTo(topAnchor: albumDetailGridStackView.bottomAnchor, bottomAnchor: contentView.bottomAnchor, leftAnchor: contentView.leftAnchor, rightAnchor: contentView.rightAnchor, height: 40, topPadding: preferredButtonPadding, bottomPadding: preferredButtonPadding, leftPadding: preferredButtonPadding, rightPadding: preferredButtonPadding, topAnchorPriority: 999)
         
         self.albumDetailActionButton = albumDetailActionButton
     }
     
-    private func setupButtonTopConstraintIfContentViewHeightIsSmallerThanScrollView() {
+    private func setupButtonTopConstraintIfContentViewHeightIsSmallerThanScrollViewHeight() {
         guard let albumDetailActionButton = albumDetailActionButton,
             let albumDetailGridStackView = albumDetailGridStackView else { return }
         
@@ -114,5 +110,14 @@ class AlbumDetailViewController: UIViewController {
             let topPadding = heightDelta + preferredButtonPadding
             albumDetailActionButton.topAnchor.constraint(equalTo: albumDetailGridStackView.bottomAnchor, constant: topPadding).isActive = true
         }
+    }
+    
+    // MARK: Setup UI Element Actions
+    
+    @objc private func albumButtonAction(sender: UIButton!) {
+        guard let albumURLString = viewModel?.albumDataSource.albumURL,
+            let albumURL = URL(string: albumURLString) else { return }
+        
+        UIApplication.shared.open(albumURL)
     }
 }

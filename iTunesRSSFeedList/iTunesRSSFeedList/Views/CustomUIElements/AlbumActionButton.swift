@@ -1,5 +1,5 @@
 //
-//  GridSeparatorView.swift
+//  AlbumActionUIButton.swift
 //  iTunesRSSFeedList
 //
 //  Created by MacBook Pro 13 on 10/4/19.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GridSeparatorView: UIView {
+class AlbumActionButton: UIButton {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         self.commonInit()
@@ -22,7 +22,9 @@ class GridSeparatorView: UIView {
     
     func commonInit() {
         translatesAutoresizingMaskIntoConstraints = false
-        addConstraint(heightAnchor.constraint(equalToConstant: 1))
-        backgroundColor = UIColor.lightGray
+        setTitleColor(.pinkTone, for: .normal)
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        setTitle(Constants.iTunesButtonTitle, for: .normal)
+        backgroundColor = .grayTone
     }
 }
