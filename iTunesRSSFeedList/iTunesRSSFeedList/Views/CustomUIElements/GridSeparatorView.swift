@@ -22,7 +22,7 @@ class GridSeparatorView: UIView {
     
     func commonInit() {
         translatesAutoresizingMaskIntoConstraints = false
-        addConstraint(heightAnchor.constraint(equalToConstant: 1))
+        addConstraint(heightAnchor.constraint(equalToConstant: 0.5))
         backgroundColor = UIColor.lightGray
     }
 }

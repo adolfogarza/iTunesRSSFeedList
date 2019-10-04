@@ -21,7 +21,7 @@ final class ApplicationCoordinator: Coordinator {
     init(window: UIWindow) {
         self.window = window
         rootViewController = UINavigationController()
-        rootViewController.navigationBar.prefersLargeTitles = true
+        rootViewController.navigationBar.prefersLargeTitles = false
         albumListCoordinator = AlbumListCoordinator(presenter: rootViewController,
                                                     viewModel: AlbumListViewModel())
     }
