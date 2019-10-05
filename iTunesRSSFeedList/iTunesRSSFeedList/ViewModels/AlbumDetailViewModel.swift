@@ -41,7 +41,12 @@ final class AlbumDetailViewModel {
         imageRequest?.load(withCompletion: completion)
     }
     
-    func setupButtonTopConstraintIfContentViewHeightIsSmallerThanScrollViewHeight(albumDetailActionButton: AlbumActionButton, albumDetailGridStackView: UIStackView, scrollView: UIScrollView, contentView: UIView, preferredButtonPadding: CGFloat) {
+    func setupButtonTopConstraintIfContentViewHeightIsSmallerThanScrollViewHeight(albumDetailActionButton: AlbumActionButton?, albumDetailGridStackView: UIStackView?, scrollView: UIScrollView?, contentView: UIView?, preferredButtonPadding: CGFloat?) {
+        
+        guard let albumDetailActionButton = albumDetailActionButton,
+            let albumDetailGridStackView = albumDetailGridStackView,
+            let scrollView = scrollView, let contentView = contentView, let preferredButtonPadding = preferredButtonPadding else { return }
+        
         let scrollViewHeight = scrollView.frame.size.height
         let contentViewHeight = contentView.frame.size.height
         let heightDelta = scrollViewHeight - contentViewHeight

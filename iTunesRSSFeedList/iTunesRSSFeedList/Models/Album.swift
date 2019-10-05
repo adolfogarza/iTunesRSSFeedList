@@ -39,3 +39,16 @@ struct Album: Codable {
         case releaseDate = "Release Date"
     }
 }
+
+extension Album: Equatable {
+    static func == (lhs: Album, rhs: Album) -> Bool {
+        return
+            lhs.artistName == rhs.artistName &&
+                lhs.name == rhs.name &&
+                lhs.artworkURL == rhs.artworkURL &&
+                lhs.copyright == rhs.copyright &&
+                lhs.albumURL == rhs.albumURL &&
+                lhs.genres == rhs.genres &&
+                lhs.releaseDate == rhs.releaseDate
+    }
+}

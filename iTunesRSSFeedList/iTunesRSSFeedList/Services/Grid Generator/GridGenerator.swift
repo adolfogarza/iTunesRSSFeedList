@@ -12,9 +12,20 @@ import UIKit
 struct GridElement {
     var title: String?
     var value: String?
-    var axisOrientation:  NSLayoutConstraint.Axis
+    var axisOrientation: NSLayoutConstraint.Axis
     var elementSpacing: CGFloat
     var valueTextAlignment: NSTextAlignment
+}
+
+extension GridElement: Equatable {
+    static func == (lhs: GridElement, rhs: GridElement) -> Bool {
+        return
+            lhs.title == rhs.title &&
+                lhs.value == rhs.value &&
+                lhs.axisOrientation == rhs.axisOrientation &&
+                lhs.elementSpacing == rhs.elementSpacing &&
+                lhs.valueTextAlignment == rhs.valueTextAlignment
+    }
 }
 
 protocol GridConfiguration {
@@ -35,6 +46,7 @@ class GridGenerator {
         for gridElement in gridConfiguration.gridElements {
             let titleLabel = GridTitleLabel()
             let valueLabel = GridValueLabel()
+            
             titleLabel.text = gridElement.title
             valueLabel.text = gridElement.value
             valueLabel.textAlignment = gridElement.valueTextAlignment

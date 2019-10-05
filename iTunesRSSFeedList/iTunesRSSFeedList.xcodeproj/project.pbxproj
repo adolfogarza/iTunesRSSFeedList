@@ -16,7 +16,6 @@
 		B0553B0E234406620006EACF /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0553B0D234406620006EACF /* AlbumListViewController.swift */; };
 		B0553B13234406640006EACF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0553B12234406640006EACF /* Assets.xcassets */; };
 		B0553B16234406640006EACF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0553B14234406640006EACF /* LaunchScreen.storyboard */; };
-		B0553B21234406640006EACF /* iTunesRSSFeedListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0553B20234406640006EACF /* iTunesRSSFeedListTests.swift */; };
 		B080512B23451C9600D0E1CC /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080512A23451C9600D0E1CC /* NetworkError.swift */; };
 		B080512D2345300700D0E1CC /* APIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080512C2345300600D0E1CC /* APIWrapper.swift */; };
 		B080512F23453B7300D0E1CC /* AlbumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080512E23453B7300D0E1CC /* AlbumListViewModel.swift */; };
@@ -29,6 +28,10 @@
 		B0C2B74C2347F25D005BF93A /* CustomUIColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C2B74B2347F25D005BF93A /* CustomUIColors.swift */; };
 		B0C2B74E2347F5A2005BF93A /* AlbumActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C2B74D2347F5A2005BF93A /* AlbumActionButton.swift */; };
 		B0C2B7502348D802005BF93A /* CustomActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C2B74F2348D802005BF93A /* CustomActivityIndicatorView.swift */; };
+		B0C2B7522348E9F4005BF93A /* AlbumGridConfigurationUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C2B7512348E9F4005BF93A /* AlbumGridConfigurationUnitTests.swift */; };
+		B0C2B7542348EB6F005BF93A /* ImageCacheUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C2B7532348EB6F005BF93A /* ImageCacheUnitTests.swift */; };
+		B0C2B7562348ED4B005BF93A /* AlbumListCoordinatorUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C2B7552348ED4B005BF93A /* AlbumListCoordinatorUnitTests.swift */; };
+		B0C2B7582348EE82005BF93A /* AlbumDetailCoordinatorUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C2B7572348EE82005BF93A /* AlbumDetailCoordinatorUnitTests.swift */; };
 		B0CB397E23450CDB006881B3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB397D23450CDB006881B3 /* Constants.swift */; };
 		B0CB398123451164006881B3 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB398023451164006881B3 /* Album.swift */; };
 		B0CB3983234512FF006881B3 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB3982234512FF006881B3 /* Genre.swift */; };
@@ -60,7 +63,6 @@
 		B0553B15234406640006EACF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0553B17234406640006EACF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0553B1C234406640006EACF /* iTunesRSSFeedListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTunesRSSFeedListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0553B20234406640006EACF /* iTunesRSSFeedListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesRSSFeedListTests.swift; sourceTree = "<group>"; };
 		B0553B22234406640006EACF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B080512A23451C9600D0E1CC /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		B080512C2345300600D0E1CC /* APIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWrapper.swift; sourceTree = "<group>"; };
@@ -74,6 +76,10 @@
 		B0C2B74B2347F25D005BF93A /* CustomUIColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIColors.swift; sourceTree = "<group>"; };
 		B0C2B74D2347F5A2005BF93A /* AlbumActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionButton.swift; sourceTree = "<group>"; };
 		B0C2B74F2348D802005BF93A /* CustomActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicatorView.swift; sourceTree = "<group>"; };
+		B0C2B7512348E9F4005BF93A /* AlbumGridConfigurationUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumGridConfigurationUnitTests.swift; sourceTree = "<group>"; };
+		B0C2B7532348EB6F005BF93A /* ImageCacheUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheUnitTests.swift; sourceTree = "<group>"; };
+		B0C2B7552348ED4B005BF93A /* AlbumListCoordinatorUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListCoordinatorUnitTests.swift; sourceTree = "<group>"; };
+		B0C2B7572348EE82005BF93A /* AlbumDetailCoordinatorUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailCoordinatorUnitTests.swift; sourceTree = "<group>"; };
 		B0CB397D23450CDB006881B3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B0CB398023451164006881B3 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		B0CB3982234512FF006881B3 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
@@ -161,7 +167,10 @@
 		B0553B1F234406640006EACF /* iTunesRSSFeedListTests */ = {
 			isa = PBXGroup;
 			children = (
-				B0553B20234406640006EACF /* iTunesRSSFeedListTests.swift */,
+				B0C2B7512348E9F4005BF93A /* AlbumGridConfigurationUnitTests.swift */,
+				B0C2B7532348EB6F005BF93A /* ImageCacheUnitTests.swift */,
+				B0C2B7552348ED4B005BF93A /* AlbumListCoordinatorUnitTests.swift */,
+				B0C2B7572348EE82005BF93A /* AlbumDetailCoordinatorUnitTests.swift */,
 				B0553B22234406640006EACF /* Info.plist */,
 			);
 			path = iTunesRSSFeedListTests;
@@ -382,7 +391,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0553B21234406640006EACF /* iTunesRSSFeedListTests.swift in Sources */,
+				B0C2B7542348EB6F005BF93A /* ImageCacheUnitTests.swift in Sources */,
+				B0C2B7562348ED4B005BF93A /* AlbumListCoordinatorUnitTests.swift in Sources */,
+				B0C2B7522348E9F4005BF93A /* AlbumGridConfigurationUnitTests.swift in Sources */,
+				B0C2B7582348EE82005BF93A /* AlbumDetailCoordinatorUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

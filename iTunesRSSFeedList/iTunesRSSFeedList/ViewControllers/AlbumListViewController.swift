@@ -58,7 +58,8 @@ final class AlbumListViewController: UIViewController {
     private func setupTableViewPropertiesAndLayout() {
         let tableView = UITableView()
         view.addSubview(tableView)
-        tableView.pinToParentEdges(shouldUseTopMarginsGuide: true)
+        tableView.pinToParentEdges(shouldUseTopMarginsGuide: true,
+                                   shouldUseBottomMarginsGuide: true)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(AlbumTableViewCell.self, forCellReuseIdentifier: AlbumTableViewCell.identifier)
@@ -71,7 +72,8 @@ final class AlbumListViewController: UIViewController {
     private func setupActivityIndicatorPropertiesAndLayout() {
         let customActivityIndicatorView = CustomActivityIndicatorView()
         view.addSubview(customActivityIndicatorView)
-        customActivityIndicatorView.pinToParentEdges(shouldUseTopMarginsGuide: true)
+        customActivityIndicatorView.pinToParentEdges(shouldUseTopMarginsGuide: true,
+                                                     shouldUseBottomMarginsGuide: true)
         customActivityIndicatorView.startAnimating()
         
         self.customActivityIndicatorView = customActivityIndicatorView

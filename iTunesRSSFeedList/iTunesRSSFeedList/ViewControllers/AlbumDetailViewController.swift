@@ -50,7 +50,7 @@ class AlbumDetailViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.bounces = true
         scrollView.contentInsetAdjustmentBehavior = .never
-        scrollView.constraintTo(topAnchor: view.layoutMarginsGuide.topAnchor, bottomAnchor: view.bottomAnchor, leftAnchor: view.leftAnchor, rightAnchor: view.rightAnchor)
+        scrollView.constraintTo(topAnchor: view.layoutMarginsGuide.topAnchor, bottomAnchor: view.layoutMarginsGuide.bottomAnchor, leftAnchor: view.leftAnchor, rightAnchor: view.rightAnchor)
         self.scrollView = scrollView
     }
     
@@ -108,10 +108,7 @@ class AlbumDetailViewController: UIViewController {
     }
     
     private func setupButtonTopConstraintIfContentViewHeightIsSmallerThanScrollViewHeight() {
-        guard let albumDetailActionButton = albumDetailActionButton,
-            let albumDetailGridStackView = albumDetailGridStackView,
-            let scrollView = scrollView, let contentView = contentView,
-            let viewModel = viewModel else { return }
+        guard let viewModel = viewModel else { return }
         
         viewModel.setupButtonTopConstraintIfContentViewHeightIsSmallerThanScrollViewHeight(albumDetailActionButton: albumDetailActionButton, albumDetailGridStackView: albumDetailGridStackView, scrollView: scrollView, contentView: contentView, preferredButtonPadding: preferredButtonPadding)
     }

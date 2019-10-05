@@ -10,15 +10,16 @@ import Foundation
 import UIKit
 
 extension UIView {
-    func pinToParentEdges(shouldUseTopMarginsGuide: Bool = false) {
+    func pinToParentEdges(shouldUseTopMarginsGuide: Bool = false, shouldUseBottomMarginsGuide: Bool = false) {
         guard let superview = self.superview else { return }
         let superViewTopAnchor = shouldUseTopMarginsGuide ? superview.layoutMarginsGuide.topAnchor : superview.topAnchor
+        let superViewBottomAnchor = shouldUseBottomMarginsGuide ? superview.layoutMarginsGuide.bottomAnchor : superview.bottomAnchor
         
         translatesAutoresizingMaskIntoConstraints = false
         topAnchor.constraint(equalTo: superViewTopAnchor).isActive = true
         leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
         rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
-        bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: superViewBottomAnchor).isActive = true
     }
     
     func constraintTo(topAnchor: NSLayoutYAxisAnchor? = nil,
