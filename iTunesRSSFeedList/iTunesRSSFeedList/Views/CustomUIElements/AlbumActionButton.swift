@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AlbumActionButton: UIButton {
+final class AlbumActionButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonInit()

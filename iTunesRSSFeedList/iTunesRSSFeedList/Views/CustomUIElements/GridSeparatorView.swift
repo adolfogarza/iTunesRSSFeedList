@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GridSeparatorView: UIView {
+final class GridSeparatorView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonInit()

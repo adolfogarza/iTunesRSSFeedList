@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlbumDetailViewController: UIViewController {
+final class AlbumDetailViewController: UIViewController {
     
     // MARK: Properties
     

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GridTitleLabel: UILabel {
+final class GridTitleLabel: UILabel {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonInit()
@@ -29,7 +29,7 @@ class GridTitleLabel: UILabel {
     }
 }
 
-class GridValueLabel: UILabel {
+final class GridValueLabel: UILabel {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonInit()
