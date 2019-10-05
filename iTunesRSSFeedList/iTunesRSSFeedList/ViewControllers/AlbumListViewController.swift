@@ -75,7 +75,6 @@ final class AlbumListViewController: UIViewController {
         customActivityIndicatorView.pinToParentEdges(shouldUseTopMarginsGuide: true,
                                                      shouldUseBottomMarginsGuide: true)
         customActivityIndicatorView.startAnimating()
-        
         self.customActivityIndicatorView = customActivityIndicatorView
     }
 }
