@@ -13,24 +13,18 @@ class AlbumDetailViewController: UIViewController {
     // MARK: Properties
     
     var viewModel: AlbumDetailViewModel?
-    private var albumImageView = UIImageView()
-    private var contentView = UIView()
-    private var scrollView = UIScrollView()
+    private var albumImageView: UIImageView?
+    private var contentView: UIView?
+    private var scrollView: UIScrollView?
     private var albumDetailGridStackView: UIStackView?
     private var albumDetailActionButton: AlbumActionButton?
-    private var imageRequest: ImageRequest?
     private var preferredButtonPadding: CGFloat = 20
     
     // MARK: View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-        setupScrollViewPropertiesAndLayout()
-        setupContentViewPropertiesAndLayout()
-        setupAlbumImageViewPropertiesAndLayout()
-        setupAlbumDetailInformationStackViewPropertiesAndLayout()
-        setupAlbumDetailActionButtonPropertiesAndLayout()
+        setupUIPropertiesAndStartupLogic()
     }
     
     override func viewDidLayoutSubviews() {
@@ -38,59 +32,74 @@ class AlbumDetailViewController: UIViewController {
         setupButtonTopConstraintIfContentViewHeightIsSmallerThanScrollViewHeight()
     }
     
+    // MARK: UI Properties Main Setup
+    
+    private func setupUIPropertiesAndStartupLogic() {
+        setupScrollViewPropertiesAndLayout()
+        setupContentViewPropertiesAndLayout()
+        setupAlbumImageViewPropertiesAndLayout()
+        setupAlbumDetailInformationStackViewPropertiesAndLayout()
+        setupAlbumDetailActionButtonPropertiesAndLayout()
+    }
+    
     // MARK: Setup UI Element Properties And Layout
     
     private func setupScrollViewPropertiesAndLayout() {
+        view.backgroundColor = .white
+        let scrollView = UIScrollView()
         view.addSubview(scrollView)
         scrollView.bounces = true
         scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.constraintTo(topAnchor: view.layoutMarginsGuide.topAnchor, bottomAnchor: view.bottomAnchor, leftAnchor: view.leftAnchor, rightAnchor: view.rightAnchor)
+        self.scrollView = scrollView
     }
     
     private func setupContentViewPropertiesAndLayout() {
+        guard let scrollView = scrollView else { return }
+        let contentView = UIView()
         scrollView.addSubview(contentView)
         contentView.constraintTo(topAnchor: scrollView.topAnchor, bottomAnchor: scrollView.bottomAnchor, leftAnchor: scrollView.leftAnchor, rightAnchor: scrollView.rightAnchor, equalWidths: view.widthAnchor, equalWidthsMultiplier: 1.0)
         contentView.backgroundColor = .white
+        self.contentView = contentView
     }
     
     private func setupAlbumImageViewPropertiesAndLayout() {
+        guard let contentView = contentView, let viewModel = viewModel else { return }
+        let albumImageView = UIImageView()
         contentView.addSubview(albumImageView)
         
         albumImageView.constraintTo(topAnchor: contentView.topAnchor, horizontalCenterAnchor: contentView.centerXAnchor, width: Constants.preferredAlbumArtworkHeightInDetail, height: Constants.preferredAlbumArtworkHeightInDetail, topPadding: 20.0)
         
-        self.albumImageView.contentMode = .scaleAspectFit
-        self.albumImageView.clipsToBounds = true
+        albumImageView.contentMode = .scaleAspectFit
+        albumImageView.clipsToBounds = true
         
-        if let imageURLString = viewModel?.albumDataSource.artworkURL {
-            imageRequest = ImageRequest(imageURLString)
-            imageRequest?.load() { [weak self] result in
-                guard let self = self else { return }
-                
-                switch result {
-                case .success(let albumImage):
-                    self.albumImageView.image = albumImage
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        self.albumImageView = albumImageView
+        
+        viewModel.fetchAlbumArtworkImage() { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let albumImage):
+                self.albumImageView?.image = albumImage
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
     
     private func setupAlbumDetailInformationStackViewPropertiesAndLayout() {
-        guard let albumModel = viewModel?.albumDataSource else { return }
-        let albumGridConfiguration = AlbumGridConfiguration(album: albumModel)
-        let albumDetailGridStackView = GridGenerator().createStackViewGrid(fromGridConfiguration: albumGridConfiguration)
-        
+        guard let albumDetailGridStackView = viewModel?.albumDetailGridStackView,
+            let contentView = contentView, let albumImageView = albumImageView else { return }
         contentView.addSubview(albumDetailGridStackView)
-        albumDetailGridStackView.constraintTo(topAnchor: albumImageView.bottomAnchor, leftAnchor: contentView.leftAnchor, rightAnchor: contentView.rightAnchor, topPadding: 40 ,leftPadding: 20, rightPadding: 20)
+        albumDetailGridStackView.constraintTo(topAnchor: albumImageView.bottomAnchor, leftAnchor: contentView.leftAnchor, rightAnchor: contentView.rightAnchor, topPadding: 40, leftPadding: 20, rightPadding: 20)
         
         self.albumDetailGridStackView = albumDetailGridStackView
     }
     
     private func setupAlbumDetailActionButtonPropertiesAndLayout() {
-        guard let albumDetailGridStackView = albumDetailGridStackView else { return }
+        guard let contentView = contentView, let albumDetailGridStackView = albumDetailGridStackView else { return }
         let albumDetailActionButton = AlbumActionButton()
-        albumDetailActionButton.addTarget(self, action: #selector(albumButtonAction), for: .touchUpInside)
+        albumDetailActionButton.addTarget(self, action: #selector(albumButtonAction(sender:)), for: .touchUpInside)
         contentView.addSubview(albumDetailActionButton)
         
         albumDetailActionButton.constraintTo(topAnchor: albumDetailGridStackView.bottomAnchor, bottomAnchor: contentView.bottomAnchor, leftAnchor: contentView.leftAnchor, rightAnchor: contentView.rightAnchor, height: 40, topPadding: preferredButtonPadding, bottomPadding: preferredButtonPadding, leftPadding: preferredButtonPadding, rightPadding: preferredButtonPadding, topAnchorPriority: 999)
@@ -100,24 +109,17 @@ class AlbumDetailViewController: UIViewController {
     
     private func setupButtonTopConstraintIfContentViewHeightIsSmallerThanScrollViewHeight() {
         guard let albumDetailActionButton = albumDetailActionButton,
-            let albumDetailGridStackView = albumDetailGridStackView else { return }
+            let albumDetailGridStackView = albumDetailGridStackView,
+            let scrollView = scrollView, let contentView = contentView,
+            let viewModel = viewModel else { return }
         
-        let scrollViewHeight = scrollView.frame.size.height
-        let contentViewHeight = contentView.frame.size.height
-        let heightDelta = scrollViewHeight - contentViewHeight
-        
-        if heightDelta > 0, contentViewHeight > 0  {
-            let topPadding = heightDelta + preferredButtonPadding
-            albumDetailActionButton.topAnchor.constraint(equalTo: albumDetailGridStackView.bottomAnchor, constant: topPadding).isActive = true
-        }
+        viewModel.setupButtonTopConstraintIfContentViewHeightIsSmallerThanScrollViewHeight(albumDetailActionButton: albumDetailActionButton, albumDetailGridStackView: albumDetailGridStackView, scrollView: scrollView, contentView: contentView, preferredButtonPadding: preferredButtonPadding)
     }
     
     // MARK: Setup UI Element Actions
     
-    @objc private func albumButtonAction(sender: UIButton!) {
-        guard let albumURLString = viewModel?.albumDataSource.albumURL,
-            let albumURL = URL(string: albumURLString) else { return }
-        
-        UIApplication.shared.open(albumURL)
+    @objc private func albumButtonAction(sender: UIButton) {
+        guard let viewModel = viewModel else { return }
+        viewModel.presentAlbumAppleMusicDetailPage()
     }
 }

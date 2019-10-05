@@ -16,8 +16,8 @@ final class AlbumListViewController: UIViewController {
     
     // MARK: Properties
     
-    private var tableView = UITableView()
-    private var activityIndicatorView = UIView()
+    private var tableView: UITableView?
+    private var customActivityIndicatorView: CustomActivityIndicatorView?
     weak var delegate: AlbumListViewControllerDelegate?
     var viewModel: AlbumListViewModel?
     
@@ -25,15 +25,21 @@ final class AlbumListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewProperties()
-        setupTableViewPropertiesAndLayout()
-        setupActivityIndicatorPropertiesAndLayout()
-        setupViewModelAndFetchData()
+        setupUIPropertiesAndStartupLogic()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.isUserInteractionEnabled = true
+        tableView?.isUserInteractionEnabled = true
+    }
+    
+    // MARK: UI Properties Main Setup
+    
+    private func setupUIPropertiesAndStartupLogic() {
+        setupViewProperties()
+        setupTableViewPropertiesAndLayout()
+        setupActivityIndicatorPropertiesAndLayout()
+        setupViewModelAndFetchData()
     }
     
     // MARK: View Model Setup
@@ -50,6 +56,7 @@ final class AlbumListViewController: UIViewController {
     }
     
     private func setupTableViewPropertiesAndLayout() {
+        let tableView = UITableView()
         view.addSubview(tableView)
         tableView.pinToParentEdges(shouldUseTopMarginsGuide: true)
         tableView.delegate = self
@@ -57,16 +64,17 @@ final class AlbumListViewController: UIViewController {
         tableView.register(AlbumTableViewCell.self, forCellReuseIdentifier: AlbumTableViewCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
+        
+        self.tableView = tableView
     }
     
     private func setupActivityIndicatorPropertiesAndLayout() {
-        view.addSubview(activityIndicatorView)
-        activityIndicatorView.pinToParentEdges(shouldUseTopMarginsGuide: true)
-        activityIndicatorView.backgroundColor = .white
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicatorView.addSubview(activityIndicator)
-        activityIndicator.pinToParentEdges()
-        activityIndicator.startAnimating()
+        let customActivityIndicatorView = CustomActivityIndicatorView()
+        view.addSubview(customActivityIndicatorView)
+        customActivityIndicatorView.pinToParentEdges(shouldUseTopMarginsGuide: true)
+        customActivityIndicatorView.startAnimating()
+        
+        self.customActivityIndicatorView = customActivityIndicatorView
     }
 }
 
@@ -103,7 +111,8 @@ extension AlbumListViewController: UITableViewDelegate {
 
 extension AlbumListViewController: AlbumListViewModelDelegate {
     func didUpdateAlbumDataSource() {
-        activityIndicatorView.isHidden = true
-        tableView.reloadData()
+        customActivityIndicatorView?.stopAnimating()
+        customActivityIndicatorView?.isHidden = true
+        tableView?.reloadData()
     }
 }
