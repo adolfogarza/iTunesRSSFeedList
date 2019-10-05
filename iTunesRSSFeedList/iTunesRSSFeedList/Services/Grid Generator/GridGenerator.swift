@@ -33,7 +33,7 @@ protocol GridConfiguration {
     var elementSpacing: CGFloat { get }
 }
 
-class GridGenerator {
+final class GridGenerator {
     func createStackViewGrid(fromGridConfiguration gridConfiguration: GridConfiguration) -> UIStackView {
         let mainVerticalStackView = UIStackView()
         

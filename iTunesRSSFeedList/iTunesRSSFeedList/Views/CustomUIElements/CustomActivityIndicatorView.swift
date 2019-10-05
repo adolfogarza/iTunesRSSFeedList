@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CustomActivityIndicatorView: UIView {
+final class CustomActivityIndicatorView: UIView {
     private var activityIndicator = UIActivityIndicatorView()
     
     required init?(coder aDecoder: NSCoder) {
