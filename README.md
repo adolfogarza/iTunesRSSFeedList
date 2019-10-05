@@ -14,4 +14,6 @@ This and more is available on the sample codebase..
 
 The application uses an `MVVM` architecture along with `Coordinators` for navigation. ViewModels help to extract heavy business logic from the View Controllers, it also eases testing as setting up VC for testing can be arduous. `Coordinators` solve the millenary problem of being able to reuse View Controllers. Each Coordinator owns its own VC and it is responsible for handling the upcoming navigation requirements, it also provides the `View Model` for the VC.  So it makes VC more reusable and untangles them from only being used on specific use cases.
 
+## Application Architecture Diagram
+
 ![Diagram](architecture-diagram.png)
