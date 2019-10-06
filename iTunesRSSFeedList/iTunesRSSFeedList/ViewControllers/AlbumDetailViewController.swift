@@ -22,9 +22,24 @@ final class AlbumDetailViewController: UIViewController {
     
     // MARK: View Controller Lifecycle
     
+    override func loadView() {
+        view = UIView()
+        setupUIPropertiesAndLayout()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUIPropertiesAndStartupLogic()
+        
+        viewModel?.fetchAlbumArtworkImage() { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let albumImage):
+                self.albumImageView?.image = albumImage
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -34,7 +49,7 @@ final class AlbumDetailViewController: UIViewController {
     
     // MARK: UI Properties Main Setup
     
-    private func setupUIPropertiesAndStartupLogic() {
+    private func setupUIPropertiesAndLayout() {
         setupScrollViewPropertiesAndLayout()
         setupContentViewPropertiesAndLayout()
         setupAlbumImageViewPropertiesAndLayout()
@@ -51,6 +66,7 @@ final class AlbumDetailViewController: UIViewController {
         scrollView.bounces = true
         scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.constraintTo(topAnchor: view.layoutMarginsGuide.topAnchor, bottomAnchor: view.layoutMarginsGuide.bottomAnchor, leftAnchor: view.leftAnchor, rightAnchor: view.rightAnchor)
+        
         self.scrollView = scrollView
     }
     
@@ -60,31 +76,19 @@ final class AlbumDetailViewController: UIViewController {
         scrollView.addSubview(contentView)
         contentView.constraintTo(topAnchor: scrollView.topAnchor, bottomAnchor: scrollView.bottomAnchor, leftAnchor: scrollView.leftAnchor, rightAnchor: scrollView.rightAnchor, equalWidths: view.widthAnchor, equalWidthsMultiplier: 1.0)
         contentView.backgroundColor = .white
+        
         self.contentView = contentView
     }
     
     private func setupAlbumImageViewPropertiesAndLayout() {
-        guard let contentView = contentView, let viewModel = viewModel else { return }
+        guard let contentView = contentView else { return }
         let albumImageView = UIImageView()
         contentView.addSubview(albumImageView)
-        
         albumImageView.constraintTo(topAnchor: contentView.topAnchor, horizontalCenterAnchor: contentView.centerXAnchor, width: Constants.preferredAlbumArtworkHeightInDetail, height: Constants.preferredAlbumArtworkHeightInDetail, topPadding: 20.0)
-        
         albumImageView.contentMode = .scaleAspectFit
         albumImageView.clipsToBounds = true
         
         self.albumImageView = albumImageView
-        
-        viewModel.fetchAlbumArtworkImage() { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let albumImage):
-                self.albumImageView?.image = albumImage
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
     }
     
     private func setupAlbumDetailInformationStackViewPropertiesAndLayout() {

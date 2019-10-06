@@ -23,9 +23,14 @@ final class AlbumListViewController: UIViewController {
     
     // MARK: View Controller Lifecycle
     
+    override func loadView() {
+        view = UIView()
+        setupUIPropertiesAndLayout()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUIPropertiesAndStartupLogic()
+        setupViewModelAndStartupLogic()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,16 +40,15 @@ final class AlbumListViewController: UIViewController {
     
     // MARK: UI Properties Main Setup
     
-    private func setupUIPropertiesAndStartupLogic() {
+    private func setupUIPropertiesAndLayout() {
         setupViewProperties()
         setupTableViewPropertiesAndLayout()
         setupActivityIndicatorPropertiesAndLayout()
-        setupViewModelAndFetchData()
     }
     
-    // MARK: View Model Setup
+    // MARK: View Model Setup And Startup Logic
     
-    private func setupViewModelAndFetchData() {
+    private func setupViewModelAndStartupLogic() {
         viewModel?.delegate = self
         viewModel?.fetchAlbumDataSource()
     }

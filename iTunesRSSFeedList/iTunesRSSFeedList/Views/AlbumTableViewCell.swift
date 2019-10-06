@@ -24,10 +24,8 @@ final class AlbumTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupAlbumNameLabelProperties()
         setupArtistNameLabelProperties()
-        
         setupAlbumImageViewLayout()
         setupAlbumInformationViewLayout()
-        
         accessoryType = .disclosureIndicator
     }
     
@@ -60,7 +58,8 @@ final class AlbumTableViewCell: UITableViewCell {
     }
     
     private func setupAlbumImageViewProperties() {
-        albumImageView.contentMode = .scaleAspectFit
+        albumImageView.contentMode = .scaleAspectFill
+        albumImageView.layer.cornerRadius = albumImageView.bounds.width / 9
         albumImageView.clipsToBounds = true
     }
     
