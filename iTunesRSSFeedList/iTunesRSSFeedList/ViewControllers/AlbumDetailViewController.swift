@@ -45,6 +45,8 @@ final class AlbumDetailViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupButtonTopConstraintIfContentViewHeightIsSmallerThanScrollViewHeight()
+        setupAlbumDetailActionButtonCornerRadius()
+        setupAlbumImageViewCornerRadius()
     }
     
     // MARK: UI Properties Main Setup
@@ -91,6 +93,12 @@ final class AlbumDetailViewController: UIViewController {
         self.albumImageView = albumImageView
     }
     
+    private func setupAlbumImageViewCornerRadius() {
+        guard let albumImageView = albumImageView else { return }
+        albumImageView.layer.cornerRadius = albumImageView.bounds.size.width / 12
+        albumImageView.clipsToBounds = true
+    }
+    
     private func setupAlbumDetailInformationStackViewPropertiesAndLayout() {
         guard let albumDetailGridStackView = viewModel?.albumDetailGridStackView,
             let contentView = contentView, let albumImageView = albumImageView else { return }
@@ -109,6 +117,12 @@ final class AlbumDetailViewController: UIViewController {
         albumDetailActionButton.constraintTo(topAnchor: albumDetailGridStackView.bottomAnchor, bottomAnchor: contentView.bottomAnchor, leftAnchor: contentView.leftAnchor, rightAnchor: contentView.rightAnchor, height: 40, topPadding: preferredButtonPadding, bottomPadding: preferredButtonPadding, leftPadding: preferredButtonPadding, rightPadding: preferredButtonPadding, topAnchorPriority: 999)
         
         self.albumDetailActionButton = albumDetailActionButton
+    }
+    
+    private func setupAlbumDetailActionButtonCornerRadius() {
+        guard let albumDetailActionButton = albumDetailActionButton else { return }
+        albumDetailActionButton.layer.cornerRadius = albumDetailActionButton.bounds.size.width / 36
+        albumDetailActionButton.clipsToBounds = true
     }
     
     private func setupButtonTopConstraintIfContentViewHeightIsSmallerThanScrollViewHeight() {
