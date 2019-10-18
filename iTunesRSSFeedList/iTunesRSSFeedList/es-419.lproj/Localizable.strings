@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  iTunesRSSFeedList
+
+  Created by MacBook Pro 13 on 10/16/19.
+  Copyright © 2019 Adolfo. All rights reserved.
+*/
+
+"albumListTitle" = "Top Álbums En iTunes";
+"albumDetailTitle" = "Detalles De Álbum";
+"iTunesButtonTitle" = "Ver Álbum En Apple Music";
+"artistName" = "Artista";
+"albumName" = "Álbum";
+"copyright" = "Copyright";
+"genres" = "Géneros";
+"releaseDate" = "Fecha De Publicación";

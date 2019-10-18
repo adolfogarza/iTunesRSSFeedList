@@ -14,11 +14,11 @@ class AlbumGridConfigurationUnitTests: XCTestCase {
     func testAlbumGridConfigurationElementsEqualExpectedElementsFromAlbumModel() {
         let album = Album(artistName: "Micheal Jackson", name: "Thriller", artworkURL: nil, copyright: "Micheal Jackson", albumURL: nil, genres: nil, releaseDate: "1982-11-30")
         
-        let albumNameGridElement = GridElement(title: Album.DescriptorText.name.rawValue, value: album.name, axisOrientation: .horizontal, elementSpacing: 5, valueTextAlignment: .right)
-        let artistNameGridElement = GridElement(title: Album.DescriptorText.artistName.rawValue, value: album.artistName, axisOrientation: .horizontal, elementSpacing: 5, valueTextAlignment: .right)
-        let releaseDateGridElement = GridElement(title: Album.DescriptorText.releaseDate.rawValue, value: album.releaseDate, axisOrientation: .horizontal, elementSpacing: 5, valueTextAlignment: .right)
-        let genresGridElement = GridElement(title: Album.DescriptorText.genres.rawValue, value: album.albumGenres, axisOrientation: .vertical, elementSpacing: 15, valueTextAlignment: .left)
-        let copyrightGridElement = GridElement(title: Album.DescriptorText.copyright.rawValue, value: album.copyright, axisOrientation: .vertical, elementSpacing: 15, valueTextAlignment: .left)
+        let albumNameGridElement = GridElement(title: Album.LabelNames.name.rawValue, value: album.name, axisOrientation: .horizontal, elementSpacing: 5, valueTextAlignment: .right)
+        let artistNameGridElement = GridElement(title: Album.LabelNames.artistName.rawValue, value: album.artistName, axisOrientation: .horizontal, elementSpacing: 5, valueTextAlignment: .right)
+        let releaseDateGridElement = GridElement(title: Album.LabelNames.releaseDate.rawValue, value: album.releaseDate, axisOrientation: .horizontal, elementSpacing: 5, valueTextAlignment: .right)
+        let genresGridElement = GridElement(title: Album.LabelNames.genres.rawValue, value: album.albumGenres, axisOrientation: .vertical, elementSpacing: 15, valueTextAlignment: .left)
+        let copyrightGridElement = GridElement(title: Album.LabelNames.copyright.rawValue, value: album.copyright, axisOrientation: .vertical, elementSpacing: 15, valueTextAlignment: .left)
         
         let currentAlbumGridConfigurationElements = AlbumGridConfiguration(album: album).gridElements
         

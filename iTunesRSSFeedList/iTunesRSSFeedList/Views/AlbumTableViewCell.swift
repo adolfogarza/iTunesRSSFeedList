@@ -13,8 +13,8 @@ final class AlbumTableViewCell: UITableViewCell {
     // MARK: Properties
     
     static let identifier = "AlbumTableViewCell"
-    private let albumNameLabel = UILabel()
-    private let artistNameLabel = UILabel()
+    private let albumNameLabel = AlbumTitleCellLabel()
+    private let artistNameLabel = AlbumSubtitleCellLabel()
     private let albumImageView = UIImageView()
     private var imageRequest: ImageRequest?
     
@@ -22,10 +22,7 @@ final class AlbumTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupAlbumNameLabelProperties()
-        setupArtistNameLabelProperties()
-        setupAlbumImageViewLayout()
-        setupAlbumInformationViewLayout()
+        setupAlbumInformationStackViewLayout()
         accessoryType = .disclosureIndicator
     }
     
@@ -43,20 +40,6 @@ final class AlbumTableViewCell: UITableViewCell {
     
     // MARK: UI Element Property Setup
     
-    private func setupArtistNameLabelProperties() {
-        artistNameLabel.numberOfLines = 1
-        artistNameLabel.textAlignment = .left
-        artistNameLabel.textColor = .black
-        artistNameLabel.font = UIFont.systemFont(ofSize: 17)
-    }
-    
-    private func setupAlbumNameLabelProperties() {
-        albumNameLabel.numberOfLines = 2
-        albumNameLabel.textAlignment = .left
-        albumNameLabel.textColor = .black
-        albumNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
-    }
-    
     private func setupAlbumImageViewProperties() {
         albumImageView.contentMode = .scaleAspectFill
         albumImageView.layer.cornerRadius = albumImageView.bounds.width / 9
@@ -65,22 +48,28 @@ final class AlbumTableViewCell: UITableViewCell {
     
     // MARK: UI Element Layout Setup
     
-    private func setupAlbumImageViewLayout() {
-        addSubview(albumImageView)
-        albumImageView.constraintTo(topAnchor: topAnchor, bottomAnchor: bottomAnchor, leftAnchor: leftAnchor, rightAnchor: nil, width: Constants.preferredAlbumArtworkHeightInList, height: Constants.preferredAlbumArtworkHeightInList, topPadding: 5, bottomPadding: 5, leftPadding: 15, bottomAnchorPriority: 999)
-    }
-    
-    private func setupAlbumInformationViewLayout() {
-        let albumInformationView = UIView()
-        albumInformationView.addSubview(albumNameLabel)
-        albumInformationView.addSubview(artistNameLabel)
-        addSubview(albumInformationView)
-                
-        albumNameLabel.constraintTo(topAnchor: albumInformationView.topAnchor, leftAnchor: albumInformationView.leftAnchor, rightAnchor: albumInformationView.rightAnchor, topPadding: 5, leftPadding: 5, rightPadding: 5)
+    private func setupAlbumInformationStackViewLayout() {
+        let albumCellInformationHorizontalStackView = UIStackView()
+        albumCellInformationHorizontalStackView.translatesAutoresizingMaskIntoConstraints = false
+        albumCellInformationHorizontalStackView.axis = .horizontal
+        albumCellInformationHorizontalStackView.spacing = 15
+        albumCellInformationHorizontalStackView.distribution = .fill
+        albumCellInformationHorizontalStackView.alignment = .center
         
-        artistNameLabel.constraintTo(topAnchor: albumNameLabel.bottomAnchor, bottomAnchor: albumInformationView.bottomAnchor, leftAnchor: albumInformationView.leftAnchor, rightAnchor: albumInformationView.rightAnchor, topPadding: 5, bottomPadding: 5, leftPadding: 5, rightPadding: 5)
+        let albumDetailsVerticalStackView = UIStackView(arrangedSubviews: [albumNameLabel, artistNameLabel])
+        albumDetailsVerticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        albumDetailsVerticalStackView.axis = .vertical
+        albumDetailsVerticalStackView.distribution = .equalSpacing
+        albumDetailsVerticalStackView.alignment = .fill
+        albumDetailsVerticalStackView.spacing = 5
         
-        albumInformationView.constraintTo(leftAnchor: albumImageView.rightAnchor, rightAnchor: rightAnchor, verticalCenterAnchor: albumImageView.centerYAnchor, leftPadding: 10, rightPadding: 25)
+        albumImageView.constraintTo(width: Constants.preferredAlbumArtworkHeightInList, height: Constants.preferredAlbumArtworkHeightInList)
+        albumImageView.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
+        albumCellInformationHorizontalStackView.addArrangedSubview(albumImageView)
+        albumCellInformationHorizontalStackView.addArrangedSubview(albumDetailsVerticalStackView)
+        
+        contentView.addSubview(albumCellInformationHorizontalStackView)
+        albumCellInformationHorizontalStackView.constraintTo(topAnchor: contentView.topAnchor, bottomAnchor: contentView.bottomAnchor, leftAnchor: contentView.leftAnchor, rightAnchor: contentView.rightAnchor, topPadding: 10, bottomPadding: 10, leftPadding: 10, rightPadding: 10)
     }
     
     // MARK: Model Bind

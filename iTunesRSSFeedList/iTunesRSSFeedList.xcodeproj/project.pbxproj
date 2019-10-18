@@ -11,6 +11,7 @@
 		B010760E2347A181008CE3D9 /* AlbumGridConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B010760D2347A181008CE3D9 /* AlbumGridConfiguration.swift */; };
 		B01076112347AC04008CE3D9 /* GridUILabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01076102347AC04008CE3D9 /* GridUILabels.swift */; };
 		B01076132347AFF8008CE3D9 /* GridSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01076122347AFF8008CE3D9 /* GridSeparatorView.swift */; };
+		B017789C2357E6B90028E934 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B017789A2357E6B90028E934 /* Localizable.strings */; };
 		B0553B0A234406620006EACF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0553B09234406620006EACF /* AppDelegate.swift */; };
 		B0553B0C234406620006EACF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0553B0B234406620006EACF /* SceneDelegate.swift */; };
 		B0553B0E234406620006EACF /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0553B0D234406620006EACF /* AlbumListViewController.swift */; };
@@ -55,6 +56,9 @@
 		B010760D2347A181008CE3D9 /* AlbumGridConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumGridConfiguration.swift; sourceTree = "<group>"; };
 		B01076102347AC04008CE3D9 /* GridUILabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridUILabels.swift; sourceTree = "<group>"; };
 		B01076122347AFF8008CE3D9 /* GridSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSeparatorView.swift; sourceTree = "<group>"; };
+		B01778992357E62E0028E934 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		B017789B2357E6B90028E934 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B017789D2357E6D80028E934 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B0553B06234406620006EACF /* iTunesRSSFeedList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesRSSFeedList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0553B09234406620006EACF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0553B0B234406620006EACF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 				B0553B12234406640006EACF /* Assets.xcassets */,
 				B0553B14234406640006EACF /* LaunchScreen.storyboard */,
 				B0553B17234406640006EACF /* Info.plist */,
+				B017789A2357E6B90028E934 /* Localizable.strings */,
 			);
 			path = iTunesRSSFeedList;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"es-419",
 			);
 			mainGroup = B0553AFD234406620006EACF;
 			productRefGroup = B0553B07234406620006EACF /* Products */;
@@ -341,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0553B16234406640006EACF /* LaunchScreen.storyboard in Resources */,
+				B017789C2357E6B90028E934 /* Localizable.strings in Resources */,
 				B0553B13234406640006EACF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,10 +416,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B017789A2357E6B90028E934 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B017789B2357E6B90028E934 /* Base */,
+				B017789D2357E6D80028E934 /* es-419 */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		B0553B14234406640006EACF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B0553B15234406640006EACF /* Base */,
+				B01778992357E62E0028E934 /* es-419 */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -424,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -484,6 +502,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -31,12 +31,27 @@ struct Album: Codable {
         case releaseDate
     }
     
-    enum DescriptorText: String {
-        case artistName = "Artist Name"
-        case name = "Album Name"
-        case copyright = "Copyright"
-        case genres = "Genres"
-        case releaseDate = "Release Date"
+    enum LabelNames {
+        case artistName
+        case name
+        case copyright
+        case genres
+        case releaseDate
+        
+        var localizedString: String {
+            switch self {
+            case .artistName:
+                return Constants.artistName
+            case .name:
+                return Constants.albumName
+            case .copyright:
+                return Constants.copyright
+            case .genres:
+                return Constants.genres
+            case .releaseDate:
+                return Constants.releaseDate
+            }
+        }
     }
 }
 

@@ -48,3 +48,42 @@ final class GridValueLabel: UILabel {
         font = UIFont.systemFont(ofSize: 16)
     }
 }
+
+final class AlbumTitleCellLabel: UILabel {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        numberOfLines = 2
+        textAlignment = .left
+        textColor = .black
+        font = UIFont.boldSystemFont(ofSize: 16)
+    }
+}
+
+final class AlbumSubtitleCellLabel: UILabel {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        numberOfLines = 1
+        textAlignment = .left
+        textColor = .black
+        font = UIFont.systemFont(ofSize: 17)
+    }
+}
+

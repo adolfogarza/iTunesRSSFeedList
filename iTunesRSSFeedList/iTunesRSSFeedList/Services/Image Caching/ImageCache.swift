@@ -12,14 +12,19 @@ import UIKit
 final class ImageCache {
     static let shared = ImageCache()
     private var cache = NSCache<NSString, UIImage>()
+    private let concurrentImageCacheQueue = DispatchQueue(label: "AdolfoGarza.iTunesRSSFeedList.ImageCacheQueue", attributes: .concurrent)
     
     private init() {}
     
     func image(forKey key: NSString) -> UIImage? {
-        return cache.object(forKey: key)
+        concurrentImageCacheQueue.sync {
+            return cache.object(forKey: key)
+        }
     }
     
     func setImage(_ object: UIImage, ForKey key: NSString) {
-        cache.setObject(object, forKey: key)
+        concurrentImageCacheQueue.async(flags: .barrier) { [weak self] in
+            self?.cache.setObject(object, forKey: key)
+        }
     }
 }
